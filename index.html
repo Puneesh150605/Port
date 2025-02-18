@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puneesh - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, .tech-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #00ffff;
+        }
+
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+          0% {
+            clip: rect(17px, 9999px, 42px, 0);
+          }
+          20% {
+            clip: rect(99px, 9999px, 89px, 0);
+          }
+          40% {
+            clip: rect(66px, 9999px, 72px, 0);
+          }
+          60% {
+            clip: rect(40px, 9999px, 98px, 0);
+          }
+          80% {
+            clip: rect(22px, 9999px, 67px, 0);
+          }
+          100% {
+            clip: rect(53px, 9999px, 86px, 0);
+          }
+        }
+
+        @keyframes glitch-anim-2 {
+          0% {
+            clip: rect(65px, 9999px, 119px, 0);
+          }
+          20% {
+            clip: rect(89px, 9999px, 44px, 0);
+          }
+          40% {
+            clip: rect(41px, 9999px, 115px, 0);
+          }
+          60% {
+            clip: rect(54px, 9999px, 62px, 0);
+          }
+          80% {
+            clip: rect(84px, 9999px, 35px, 0);
+          }
+          100% {
+            clip: rect(77px, 9999px, 91px, 0);
+          }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md" x-data="{ isOpen: false }">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-3xl font-bold gradient-text tech-font">Puneesh</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-cyan-400 transition-colors text-lg">Home</a>
+                    <a href="#about" class="hover:text-cyan-400 transition-colors text-lg">About</a>
+                    <a href="#skills" class="hover:text-cyan-400 transition-colors text-lg">Skills</a>
+                    <a href="#projects" class="hover:text-cyan-400 transition-colors text-lg">Projects</a>
+                    <a href="#contact" class="hover:text-cyan-400 transition-colors text-lg">Contact</a>
+                </div>
+                <button @click="isOpen = !isOpen" class="md:hidden focus:outline-none">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                        <path x-show="!isOpen" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+                        <path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div x-show="isOpen" class="md:hidden">
+            <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-800">Home</a>
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-800">About</a>
+            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-800">Skills</a>
+            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-800">Projects</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-800">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-black py-20">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center justify-between">
+            <div class="lg:w-1/2 text-left mb-12 lg:mb-0">
+                <h1 class="text-6xl md:text-8xl font-bold mb-8 glitch tech-font" data-text="Puneesh">
+                    Puneesh
+                </h1>
+                <div class="space-y-4 mb-12">
+                    <p class="text-2xl md:text-3xl text-cyan-300 tech-font">Full-Stack Developer</p>
+                    <p class="text-2xl md:text-3xl text-purple-300 tech-font">UI/UX Enthusiast</p>
+                    <p class="text-2xl md:text-3xl text-green-300 tech-font">Tech Innovator</p>
+                    <p class="text-2xl md:text-3xl text-yellow-300 tech-font">Problem Solver</p>
+                </div>
+                <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-2xl">
+                    "In the realm of code, every challenge is an opportunity to innovate and create something extraordinary."
+                </p>
+                <a href="#contact" class="bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black px-8 py-4 rounded-full 
+                             transition-all transform hover:scale-110 inline-block text-xl">
+                    Let's Connect
+                </a>
+            </div>
+            <div class="lg:w-1/2">
+                <div class="relative">
+                    <img src="https://source.unsplash.com/random/800x800?portrait" alt="Puneesh" class="rounded-lg shadow-2xl neon-border w-full h-auto max-w-2xl mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-20 gradient-text">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <img src="https://source.unsplash.com/random/600x600?coding" alt="About Puneesh" class="rounded-lg shadow-2xl neon-border">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <p class="text-xl mb-8 leading-relaxed">
+                        Hello! I'm Puneesh, a passionate full-stack developer with a knack for creating innovative digital solutions. 
+                        With over 5 years of experience, I've honed my skills in various programming languages and frameworks, 
+                        always staying at the forefront of technology trends.
+                    </p>
+                    <p class="text-xl mb-8 leading-relaxed">
+                        My approach combines technical expertise with creative problem-solving, allowing me to craft 
+                        user-centric designs that not only look great but also perform exceptionally. I believe in the 
+                        power of clean, efficient code and intuitive user experiences to drive digital transformation.
+                    </p>
+                    <p class="text-xl leading-relaxed">
+                        When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, 
+                        or sharing my knowledge through tech blogs and community meetups.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-20 gradient-text">Technical Expertise</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+                <div class="text-center card-hover">
+                    <i class="fab fa-js tech-icon text-yellow-400 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-4">JavaScript</h3>
+                    <p class="text-gray-400">ES6+, React, Vue.js</p>
+                </div>
+                <div class="text-center card-hover">
+                    <i class="fab fa-python tech-icon text-blue-400 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-4">Python</h3>
+                    <p class="text-gray-400">Django, Flask, Data Science</p>
+                </div>
+                <div class="text-center card-hover">
+                    <i class="fab fa-java tech-icon text-red-400 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-4">Java</h3>
+                    <p class="text-gray-400">Spring Boot, Android</p>
+                </div>
+                <div class="text-center card-hover">
+                    <i class="fas fa-database tech-icon text-green-400 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-4">SQL</h3>
+                    <p class="text-gray-400">MySQL, PostgreSQL, MongoDB</p>
+                </div>
+                <div class="text-center card-hover">
+                    <i class="fab fa-aws tech-icon text-orange-400 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-4">AWS</h3>
+                    <p class="text-gray-400">EC2, S3, Lambda</p>
+                </div>
+                <div class="text-center card-hover">
+                    <i class="fab fa-docker tech-icon text-blue-500 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-4">Docker</h3>
+                    <p class="text-gray-400">Containerization, Orchestration</p>
+                </div>
+                <div class="text-center card-hover">
+                    <i class="fab fa-react tech-icon text-blue-300 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-4">React Native</h3>
+                    <p class="text-gray-400">iOS, Android Development</p>
+                </div>
+                <div class="text-center card-hover">
+                    <i class="fas fa-brain tech-icon text-purple-400 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-4">Machine Learning</h3>
+                    <p class="text-gray-400">TensorFlow, PyTorch</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-20 gradient-text">Featured Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div class="bg-black rounded-xl overflow-hidden card-hover neon-border">
+                    <img src="https://source.unsplash.com/random/600x400?website" alt="Project 1" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">AI-Powered E-commerce</h3>
+                        <p class="text-gray-300 mb-6">A cutting-edge online store with personalized recommendations and real-time inventory management.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-500 text-xs font-semibold px-3 py-1 rounded-full">React</span>
+                            <span class="bg-green-500 text-xs font-semibold px-3 py-1 rounded-full">Node.js</span>
+                            <span class="bg-yellow-500 text-xs font-semibold px-3 py-1 rounded-full">TensorFlow</span>
+                            <span class="bg-red-500 text-xs font-semibold px-3 py-1 rounded-full">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-black rounded-xl overflow-hidden card-hover neon-border">
+                    <img src="https://source.unsplash.com/random/600x400?mobile" alt="Project 2" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">Smart Home IoT App</h3>
+                        <p class="text-gray-300 mb-6">A mobile application for controlling smart home devices with voice commands and AI-driven automation.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-500 text-xs font-semibold px-3 py-1 rounded-full">React Native</span>
+                            <span class="bg-green-500 text-xs font-semibold px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-yellow-500 text-xs font-semibold px-3 py-1 rounded-full">IoT</span>
+                            <span class="bg-purple-500 text-xs font-semibold px-3 py-1 rounded-full">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-black rounded-xl overflow-hidden card-hover neon-border">
+                    <img src="https://source.unsplash.com/random/600x400?data" alt="Project 3" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">Predictive Analytics Dashboard</h3>
+                        <p class="text-gray-300 mb-6">A data visualization platform for businesses to forecast trends and make informed decisions.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-500 text-xs font-semibold px-3 py-1 rounded-full">D3.js</span>
+                            <span class="bg-green-500 text-xs font-semibold px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-yellow-500 text-xs font-semibold px-3 py-1 rounded-full">Machine Learning</span>
+                            <span class="bg-red-500 text-xs font-semibold px-3 py-1 rounded-full">Big Data</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-16">
+                <a href="#" class="inline-block bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black px-8 py-4 rounded-full transition-all text-xl">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-20 gradient-text">
+                Let's Connect
+            </h2>
+            <div class="max-w-4xl mx-auto bg-black rounded-xl p-12 neon-border">
+                <form class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <input type="text" placeholder="Name" class="w-full px-6 py-4 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xl">
+                        <input type="email" placeholder="Email" class="w-full px-6 py-4 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xl">
+                    </div>
+                    <textarea placeholder="Your Message" rows="6" class="w-full px-6 py-4 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xl"></textarea>
+                    <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-500 text-black px-8 py-4 rounded-lg transition-all transform hover:scale-105 text-xl font-bold">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-xl">&copy; 2025 Puneesh. All rights reserved.</p>
+            <div class="flex justify-center space-x-8 mt-8">
+                <a href="#" class="text-gray-400 hover:text-cyan-400 text-2xl">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-cyan-400 text-2xl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-cyan-400 text-2xl">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-cyan-400 text-2xl">
+                    <i class="fab fa-dribbble"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize ScrollReveal
+        ScrollReveal().reveal('.card-hover', { 
+            delay: 200,
+            distance: '20px',
+            origin: 'bottom',
+            interval: 100
+        });
+
+        ScrollReveal().reveal('.gradient-text', { 
+            delay: 300,
+            scale: 0.85,
+            duration: 1000
+        });
+
+        ScrollReveal().reveal('.neon-border', { 
+            delay: 400,
+            distance: '40px',
+            origin: 'left',
+            interval: 200
+        });
+
+        // Typing animation for the quote
+        const quoteElement = document.querySelector('#home p:nth-of-type(5)');
+        const quoteText = quoteElement.textContent;
+        quoteElement.textContent = '';
+
+        function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+                quoteElement.innerHTML = text.substring(0, i+1) + '<span class="cursor">|</span>';
+                setTimeout(function() {
+                    typeWriter(text, i + 1, fnCallback)
+                }, 50);
+            } else if (typeof fnCallback == 'function') {
+                setTimeout(fnCallback, 700);
+            }
+        }
+
+        // Start the typing animation
+        typeWriter(quoteText, 0, function() {
+            quoteElement.innerHTML = quoteText;
+        });
+    </script>
+</body>
+</html>
